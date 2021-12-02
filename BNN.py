@@ -10,10 +10,10 @@ from nltk.stem import PorterStemmer
 ps = PorterStemmer() 
 
 vocabulary_size = 0
-word2location = {}
+word2location = {} # Bag of words
 data=data.sample(frac=1)
-# Bag of words
 
+# Construct the Bag of words
 def prepare_vocabulary(data):
     index = 0
     counter = 0
@@ -29,6 +29,18 @@ def prepare_vocabulary(data):
                     word2location[stemed_word] = index
                     index += 1
                     
-    return index
+    return index # the size of our bag of words
 
+def convert2vec(sentance):
+    #sentance = sentance.lower()
+    res_vec = np.zeros(vocabulary_size) # initialize the result by fill with zeros
+    words = nltk.word_tokenize(sentance) # split the verse into words
+    for word in words:
+        stemed_word = ps.stem(word) # make the word in lower case
+        if stemed_word in word2location: 
+            res_vec[word2location[stemed_word]]+=1 # calculate the relative amount of the
+            # number of occurrences of the word out of all its occurrences in our entire data set
+    return res_vec
+
+books = ['Genesis', '1 Samuel','Psalms'] # our data set
 
