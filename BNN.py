@@ -14,7 +14,7 @@ word2location = {} # Bag of words
 
 data=data.sample(frac=1) # random the data
 
-def split_train_test(data, div=0.7): 
+def split_train_test(data, div=0.8): 
     xdim = data.shape[0]
     split = int(xdim * div) 
     train = data[:split]
