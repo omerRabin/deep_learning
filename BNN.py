@@ -74,7 +74,7 @@ y_ = tf.compat.v1.placeholder(tf.float32,[None,categories])
 W1 = tf.compat.v1.Variable(tf.compat.v1.truncated_normal([features, hidden1_size], stddev = 0.1))
 b1 = tf.compat.v1.Variable(tf.constant(0.1, shape = [hidden1_size]))
 z1 = tf.nn.relu(tf.matmul(x,W1)+b1)
-# second Layer
+
 W2 = tf.compat.v1.Variable(tf.compat.v1.truncated_normal([hidden1_size, categories], stddev = 0.1))
 b2 = tf.compat.v1.Variable(tf.constant(0.1, shape = [categories]))
 z2 = tf.nn.relu(tf.matmul(z1,W2)+b2)
